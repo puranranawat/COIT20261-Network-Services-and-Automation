@@ -129,9 +129,7 @@ This screenshot shows:
   * Student ID: 12313659
   * Week 01
   * IP: 10.10.1.1
-
-![Network Topology](Week01-Network.png)
-
+![Network Topology](screenshots/Week01-Network.png)
 ---
 
 ### 6.2 Console Output
@@ -152,7 +150,7 @@ This screenshot shows:
   10.10.1.1/24
   ```
 
-![Console Output](Week01-Console.png)
+![Console Output](screenshots/Week01-Console.png)
 
 ---
 
