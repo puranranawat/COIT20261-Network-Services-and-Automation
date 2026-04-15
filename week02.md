@@ -24,8 +24,8 @@ The network consists of four Linux-based PCs connected to a central Ethernet swi
 * 1 × Ethernet switch
 * Star topology configuration
 
-📸 **Screenshot: Network Topology**
-*(Insert your topology image here)*
+**Screenshot: Network Topology**
+![Network Topology](screenshots/Network Topology.png)
 
 **Explanation:**
 This topology shows four Linux machines connected to a central switch. All links are active (green), indicating proper connectivity and device operation.
@@ -36,8 +36,8 @@ This topology shows four Linux machines connected to a central switch. All links
 
 The GNS3 VM was successfully initialized and running, providing the backend virtualization environment required to run QEMU-based Linux instances.
 
-📸 **Screenshot: GNS3 VM Running**
-*(Insert GNS3 VM screen here)*
+**Screenshot: GNS3 VM Running**
+![GNS3 VM](screenshots/GNS3 VM Running.png)
 
 **Explanation:**
 The screenshot confirms that the GNS3 VM is operational, with a valid IP address assigned. This ensures proper communication between the host system and virtual network devices.
@@ -48,8 +48,8 @@ The screenshot confirms that the GNS3 VM is operational, with a valid IP address
 
 Tiny Core Linux was installed and used as the operating system for all nodes. Each node was accessed using the VNC interface.
 
-📸 **Screenshot: Tiny Core Linux Desktop**
-*(Insert Linux desktop screenshot)*
+**Screenshot: Tiny Core Linux Desktop**
+![Linux Desktop](screenshots/Tiny Core Linux Desktop.png)
 
 **Explanation:**
 This confirms that the Linux environment is successfully booted and ready for configuration.
@@ -75,8 +75,12 @@ Each Linux node was assigned a unique IP address within the same subnet (10.1.1.
 sudo ifconfig eth0 10.1.1.X netmask 255.255.255.0 up
 ```
 
-📸 **Screenshot: IP Configuration (PC1 & PC2)**
-*(Insert ifconfig screenshots here)*
+ **Screenshot: IP Configuration**
+
+![PC1 IP](screenshots/pc1\(ip\).png)
+![PC2 IP](screenshots/pc2\(ip\).png)
+![PC3 IP](screenshots/pc3\(ip\).png)
+![PC4 IP](screenshots/pc4\(ip\).png)
 
 **Explanation:**
 The screenshots verify that each device has been assigned a correct IP address and that the network interface (eth0) is active.
@@ -93,8 +97,10 @@ Connectivity between devices was verified using the ICMP protocol via the `ping`
 ping 10.1.1.2 -c 5
 ```
 
-📸 **Screenshot: Ping Test Results**
-*(Insert ping screenshots here)*
+**Screenshot: Ping Test Results**
+
+![Ping Test 1](screenshots/Ping Test Results_1.png)
+![Ping Test 2](screenshots/Ping Test Results_2.png)
 
 **Explanation:**
 The ping results show successful communication between devices with 0% packet loss, confirming that the network is correctly configured.
