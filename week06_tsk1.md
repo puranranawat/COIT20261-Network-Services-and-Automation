@@ -1,4 +1,4 @@
-# Week 06: ARP (Address Resolution Protocol)
+# Week 06: Address Resolution Protocol (ARP)
 
 ## Task 1: Resolving IP Addresses to Hardware Addresses
 
@@ -9,131 +9,137 @@
 
 ---
 
-## Aim
-The aim of this task is to observe how ARP (Address Resolution Protocol) is used to map IP addresses to MAC (hardware) addresses within a Local Area Network (LAN).
+# 1. Aim
+
+The aim of this task is to analyse how the Address Resolution Protocol (ARP) resolves IP addresses into corresponding hardware (MAC) addresses within a Local Area Network (LAN), and to observe how the ARP table dynamically updates during communication between devices.
 
 ---
 
-## Network Setup
+# 2. Network Configuration
 
-The network consists of:
-- 4 Linux Hosts (PC1, PC2, PC3, PC4)
-- 1 Ethernet Switch
+A simple LAN was created using GNS3 consisting of four Linux hosts connected through a single Ethernet switch. All hosts were configured within the same subnet to enable direct communication.
 
-All hosts are connected to the same switch and belong to the same subnet.
-
----
-
-## IP Address Configuration
-
-| Device | IP Address | Subnet Mask |
-|--------|------------|-------------|
-| PC1 (Host A) | 10.1.1.1 | 255.255.255.0 |
-| PC2 (Host B) | 10.1.1.2 | 255.255.255.0 |
-| PC3 (Host C) | 10.1.1.3 | 255.255.255.0 |
-| PC4 (Host D) | 10.1.1.4 | 255.255.255.0 |
+## Network Components:
+- 4 × Linux Hosts (PC1, PC2, PC3, PC4)
+- 1 × Ethernet Switch
 
 ---
 
-## Step 1: Viewing Initial ARP Table
+# 3. IP Addressing Scheme
 
-On PC1 (Host A), the ARP table was checked before any communication.
+| Device | Role   | IP Address | Subnet Mask |
+|--------|--------|------------|-------------|
+| PC1    | Host A | 10.1.1.1   | 255.255.255.0 |
+| PC2    | Host B | 10.1.1.2   | 255.255.255.0 |
+| PC3    | Host C | 10.1.1.3   | 255.255.255.0 |
+| PC4    | Host D | 10.1.1.4   | 255.255.255.0 |
 
-### Command:
+---
+
+# 4. Initial ARP Table Analysis
+
+Before any communication, the ARP table of PC1 (Host A) was examined.
+
+## Command Used:
 ```bash
 ip neigh show
 ```
 
-### Observation:
-- The ARP table was empty or contained very few entries.
-- No MAC address mappings were present for other hosts.
+## Observation:
+- The ARP table was initially empty or contained minimal entries.
+- No mapping existed between IP addresses and MAC addresses of other hosts.
+- This indicates that no prior communication had occurred within the network.
 
-### Screenshot:
-![ARP Before](screenshots/arp-before.png)
 
 ---
 
-## Step 2: Ping from PC1 to PC2
+# 5. ARP Trigger through Communication
 
-A ping was initiated from PC1 to PC2 to trigger ARP resolution.
+To initiate ARP resolution, a ping request was sent from PC1 to PC2.
 
-### Command:
+## Command Used:
 ```bash
 ping 10.1.1.2
 ```
 
-### Observation:
-- Communication between PC1 and PC2 was successful.
-- ARP protocol was used internally to resolve the MAC address.
+## Observation:
+- The ping was successful, confirming connectivity between hosts.
+- During this process, ARP was automatically triggered to resolve the MAC address of PC2.
+- The system broadcasted an ARP request and received a reply from PC2.
 
 ---
 
-## Step 3: Viewing ARP Table After Ping
+# 6. ARP Table After First Communication
 
-The ARP table on PC1 was checked again.
+After the ping operation, the ARP table was checked again on PC1.
 
-### Command:
+## Command Used:
 ```bash
 ip neigh show
 ```
 
-### Observation:
-- A new entry was added in the ARP table.
+## Observation:
+- A new entry appeared in the ARP table.
 - The entry contained:
-  - IP address of PC2
+  - IP address of PC2 (10.1.1.2)
   - Corresponding MAC address
   - State: REACHABLE
+- This confirms that ARP successfully resolved the hardware address.
 
-### Screenshot:
-![ARP After Ping](screenshots/arp-after.png)
+ 
 
 ---
 
-## Step 4: Ping from PC3 to PC1
+# 7. Additional Communication Scenario
 
-A ping was initiated from PC3 to PC1.
+To further analyse ARP behaviour, a ping was initiated from PC3 (Host C) to PC1.
 
-### Command:
+## Command Used:
 ```bash
 ping 10.1.1.1
 ```
 
-### Observation:
-- PC3 successfully communicated with PC1.
-- This triggered additional ARP entries.
+## Observation:
+- The communication was successful.
+- Additional ARP interactions occurred within the network.
 
 ---
 
-## Step 5: Final ARP Table Analysis
+# 8. Final ARP Table Analysis
 
-The ARP table on PC1 was checked once again.
+The ARP table on PC1 was examined once more.
 
-### Command:
+## Command Used:
 ```bash
 ip neigh show
 ```
 
-### Observation:
-- Additional entries were visible.
-- Multiple IP-to-MAC mappings were present.
-- The table dynamically updated as communication occurred.
+## Observation:
+- Multiple entries were now present in the ARP table.
+- Each entry mapped an IP address to a corresponding MAC address.
+- Entries displayed states such as:
+  - REACHABLE
+  - STALE (in some cases over time)
+- This demonstrates that ARP dynamically updates based on network interactions.
 
-### Screenshot:
-![ARP Final](screenshots/arp-final.png)
 
----
-
-## Results and Analysis
-
-- Initially, the ARP table was empty as no communication had occurred.
-- After pinging another host, the ARP table was updated with MAC address mappings.
-- Further communication resulted in additional entries.
-- The ARP table dynamically learns and updates entries based on network activity.
-
-This demonstrates that ARP works automatically in the background to resolve IP addresses into hardware addresses required for communication.
 
 ---
 
-## Conclusion
+# 9. Results and Analysis
 
-In this task, ARP functionality was successfully observed. It was demonstrated that devices do not initially know the MAC address of other devices and must use ARP to discover it. Once communication occurs, the ARP table is updated dynamically with IP-to-MAC mappings. This process is essential for communication within a LAN, ensuring that packets are delivered to the correct hardware destination.
+The experiment clearly demonstrates the dynamic behaviour of ARP within a LAN environment:
+
+- Initially, the ARP table contained no mappings due to lack of communication.
+- After initiating communication (ping), ARP resolved IP addresses into MAC addresses.
+- The ARP table was updated with new entries containing IP-to-MAC mappings.
+- Further communication resulted in additional entries being added.
+- ARP entries change over time based on usage and network activity.
+
+This confirms that ARP operates automatically in the background and is essential for enabling communication at the data link layer.
+
+---
+
+# 10. Conclusion
+
+In conclusion, the Address Resolution Protocol plays a critical role in network communication by mapping logical IP addresses to physical MAC addresses. The experiment demonstrated that ARP entries are created dynamically when communication occurs and are maintained temporarily in the ARP table. This process ensures that data packets are delivered to the correct hardware destination within a LAN. The observations confirm that ARP is an essential mechanism for efficient and accurate communication in networked systems.
