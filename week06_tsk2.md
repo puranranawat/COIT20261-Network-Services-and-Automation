@@ -105,7 +105,7 @@ sudo route add -net 10.1.1.0 netmask 255.255.255.0 gw 10.1.2.1
 ## 5. Screenshots (Evidence)
 
 ### 5.1 Topology
-![Topology](./screenshots/topology.png)
+![Topology](./screenshots/topology1.png)
 
 ### 5.2 PC Configuration
 ![PC1](./screenshots/pc1.png)  
