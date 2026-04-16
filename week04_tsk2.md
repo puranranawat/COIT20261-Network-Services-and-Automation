@@ -166,26 +166,3 @@ This task successfully demonstrated the working of dynamic routing using OSPF. T
 
 ---
 
-## 11. Outputs  
-
-- Exported project file:  
-  `OSPF-Basics-12313659.gns3project`  
-
-- OSPF neighbour output:  
-  `show ip ospf neighbor`  
-
-- Routing table outputs:  
-  `show ip route`, `show ip ospf route`  
-
-- Traceroute outputs:  
-  Before and after link failure  
-
----
-
-## Final Status  
-
-All required components of Task 2 have been completed successfully:
-- OSPF routing observed ✔  
-- Routing tables analysed ✔  
-- Traceroute tested ✔  
-- Failover demonstrated ✔  
