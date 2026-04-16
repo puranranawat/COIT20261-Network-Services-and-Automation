@@ -14,7 +14,7 @@ To configure VLANs on an Open vSwitch and verify network segmentation by testing
 ## Network Topology
 The network consists of four PCs connected to a single Open vSwitch.
 
-![Topology](topology.png)
+![Topology](Vlan-Basics-12313659-network.png)
 
 ---
 
